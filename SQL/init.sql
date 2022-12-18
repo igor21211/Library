@@ -9,4 +9,8 @@ create table if not exists contacts(
 );
 
 INSERT INTO contacts (first_name, last_name, email, phone_number)
-VALUES ('Igor','Shpura','shpura@gmail.com',0982468587)
+VALUES ('Igor','Shpura','shpura@gmail.com',0982468587);
+INSERT INTO contacts (first_name, last_name, email, phone_number)
+VALUES ('Sergey','Kaunenko','kaunenko@gmail.com',0982234352);
+INSERT INTO contacts (first_name, last_name, email, phone_number)
+VALUES ('Nadya','Shpura','nadya@gmail.com',098453453);

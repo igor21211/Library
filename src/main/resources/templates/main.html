@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/XSL/Transform">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Contacts</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1> <th:text="${title}"</h1>
+<div id="wrapper">
+    <div id="header">
+        <h2>Contacts Book</h2>
+
+    </div>
+
+</div>
+
+<div id="container">
+    <div id="content">
+        <!-- put new button-->
+        <input type="button" value="Add Student"
+               onclick="window.location.href='add-contact'; return false;"
+               class="add-student-button"
+        />
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email Name</th>
+        <th>Phone Number</th>
+    </tr>
+
+        <th:block th:each="contact: ${contacts}">
+        <tr>
+            <td><th:block th:text="${contact.firstName}"/></td>
+            <td><th:block th:text="${contact.lastName}"/></td>
+            <td><th:block th:text="${contact.email}"/></td>
+            <td><th:block th:text="${contact.phoneNumber}"/></td>
+        </tr>
+
+        </th:block>
+
+</table>
 </body>
+
 </html>
