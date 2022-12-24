@@ -17,7 +17,7 @@
 <div id="container">
     <div id="content">
         <!-- put new button-->
-        <input type="button" value="Add Student"
+        <input type="button" value="Add Contact"
                onclick="window.location.href='add-contact'; return false;"
                class="add-student-button"
         />
@@ -31,10 +31,21 @@
 
         <th:block th:each="contact: ${contacts}">
         <tr>
-            <td><th:block th:text="${contact.firstName}"/></td>
+            <td><th:block th:text="${contact.getFirstName()}"/></td>
             <td><th:block th:text="${contact.lastName}"/></td>
             <td><th:block th:text="${contact.email}"/></td>
             <td><th:block th:text="${contact.phoneNumber}"/></td>
+
+            <td>
+                <form th:method="DELETE" th:action="@{/delete/{id}(id=${contact.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+            <td>
+                <form th:method="GET" th:action="@{/{id}/edit(id=${contact.getId()})}">
+                    <input type="submit" value="Update"/>
+                </form>
+            </td>
         </tr>
 
         </th:block>
