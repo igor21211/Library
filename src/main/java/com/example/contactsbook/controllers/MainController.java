@@ -63,28 +63,28 @@ public class MainController {
         }
     }
 
-    @GetMapping( "/name/{name}")
-    public String getByName(Model model, @PathVariable String name){
+    @GetMapping( "/name")
+    public String getByName(Model model, @RequestParam String name){
         model.addAttribute("contacts", contactsDao.getByName(name));
         return "search-by-name";
     }
 
-    @GetMapping("/lastName/{lastName}")
-    public String getByLastName(Model model, @PathVariable String lastName){
+    @GetMapping("/lastName")
+    public String getByLastName(Model model, @RequestParam String lastName){
         model.addAttribute("contacts", contactsDao.getByLastName(lastName));
-        return "search-by-name";
+        return "search-by-lastName";
     }
 
-    @GetMapping("/email/{email}")
-    public String getByEmail(Model model, @PathVariable String email){
+    @GetMapping("/email")
+    public String getByEmail(Model model, @RequestParam String email){
         model.addAttribute("contacts", contactsDao.getByEmail(email));
-        return "search-by-name";
+        return "search-by-email";
     }
 
-    @GetMapping("/phoneNumber/{phoneNumber}")
-    public String getByPhoneNumber(Model model, @PathVariable Long phoneNumber){
+    @GetMapping("/phoneNumber")
+    public String getByPhoneNumber(Model model, @RequestParam Long phoneNumber){
         model.addAttribute("contacts", contactsDao.getByPhoneNumber(phoneNumber));
-        return "search-by-name";
+        return "search-by-phoneNumber";
     }
 
 }
