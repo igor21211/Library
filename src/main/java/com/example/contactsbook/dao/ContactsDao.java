@@ -28,7 +28,12 @@ public class ContactsDao {
             .build();
     public static final String SELECT_ALL = "SELECT id ,first_name, last_name, email, phone_number FROM contacts";
     public static final String SELECT_BY_ID = "SELECT id ,first_name, last_name, email, phone_number FROM contacts WHERE id=?";
+    public static final String SELECT_BY_NAME = "SELECT id ,first_name, last_name, email, phone_number FROM contacts WHERE first_name=?";
+    public static final String SELECT_BY_LASTNAME = "SELECT id ,first_name, last_name, email, phone_number FROM contacts WHERE last_name=?";
+    public static final String SELECT_BY_PHONE_NUMBER = "SELECT id ,first_name, last_name, email, phone_number FROM contacts WHERE phone_number=?";
+    public static final String SELECT_BY_EMAIL = "SELECT id ,first_name, last_name, email, phone_number FROM contacts WHERE email=?";
     public static final String ADD_CONTACT = "INSERT INTO contacts (first_name, last_name, email, phone_number)VALUES (?,?,?,?)";
+
     private final JdbcTemplate jdbcTemplate;
 
     public List<Contact> getAll() {
@@ -61,7 +66,25 @@ public class ContactsDao {
         });
     }
 
+    public List<Contact> getByName(String firstName){
+        return jdbcTemplate.query(SELECT_BY_NAME, new Object[]{firstName},CONTACT_ROW_MAPPER);
+    }
+
     public Contact getById(int id) {
-        return jdbcTemplate.query(SELECT_BY_ID, new Object[]{id}, CONTACT_ROW_MAPPER).stream().findAny().orElse(null);
+        return jdbcTemplate.query(SELECT_BY_ID, new Object[]{id}, CONTACT_ROW_MAPPER)
+                .stream()
+                .findAny()
+                .orElse(null);
+    }
+
+    public List<Contact> getByLastName(String lastName){
+        return jdbcTemplate.query(SELECT_BY_LASTNAME, new Object[]{lastName},CONTACT_ROW_MAPPER);
+    }
+    public List<Contact> getByEmail(String email){
+        return jdbcTemplate.query(SELECT_BY_EMAIL, new Object[]{email},CONTACT_ROW_MAPPER);
+    }
+
+    public List<Contact> getByPhoneNumber(Long phoneNumber){
+        return jdbcTemplate.query(SELECT_BY_PHONE_NUMBER, new Object[]{phoneNumber},CONTACT_ROW_MAPPER);
     }
 }

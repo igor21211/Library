@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Update</title>
+  <link type="text/css" rel="stylesheet" href="css/add-student-style.css">
+  <link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div id="wrapper">
@@ -14,32 +16,36 @@
 <div id="container">
   <h3>Update Contact</h3>
 
-  <form th:method="PATCH" th:action="@{/{id}(id=${contact.getId()})}">
+  <form th:method="PATCH" th:action="@{/{id}(id=${contact.getId()})}" th:object="${contact}">
     <table>
       <tbody>
       <tr>
         <td><label>First Name:</label></td>
-        <td><input type="text"  name="firstName"></td>
+        <td><input type="text" th:field="*{firstName}"  name="firstName">
+          <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</div></td>
       </tr>
 
       <tr>
         <td><label>Last Name:</label></td>
-        <td><input type="text" name="lastName"></td>
+        <td><input type="text" th:field="*{lastName}" name="lastName">
+          <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</div></td>
       </tr>
 
       <tr>
         <td><label>Email:</label></td>
-        <td><input type="text" name="email"></td>
+        <td><input type="text" th:field="*{email}" name="email">
+          <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div></td>
       </tr>
 
       <tr>
         <td><label>Phone Number:</label></td>
-        <td><input type="number" name="phoneNumber"></td>
+        <td><input type="number" th:field="*{phoneNumber}" name="phoneNumber">
+          <div style="color:red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Email Error</div></td>
       </tr>
 
       <tr>
         <td><label></label></td>
-        <td><input type="submit" value="Save" class="save"></td>
+        <td><input type="submit" value="Update" class="save"></td>
       </tr>
       </tbody>
     </table>
