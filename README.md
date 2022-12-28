@@ -9,6 +9,7 @@
 - `Spring Boot`
 - `JDBC (JDBCTemplate)`
 - `Thymeleaf`
+- `Lombok`
 
 ##Run App
 
