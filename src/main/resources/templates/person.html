@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Person List</title>
+</head>
+<div>
+    <form method="get" action="/add-person">
+        <input type="submit" value="Add Person">
+    </form>
+</div>
+<body>
+    <div>
+        <th:block th:each="person: ${persons} ">
+        <div>
+            <ul>
+                <li>
+            Surname: <th:block th:text="${person.getSurName()}"/> <br/>
+            Name: <th:block th:text="${person.getName()}"/><br/>
+            Second Name: <th:block th:text="${person.getSecondName()}"/><br/>
+            Age: <th:block th:text="${person.getAge()}"/><br/>
+                    <form th:method="GET" th:action="@{/person/{id}(id=${person.getId()})}" >
+                        <input type="submit" value="Select">
+                </form>
+                    <div>
+                        <form method="get" th:action="@{/edit-person/{id}(id=${person.getId()})}">
+                            <input type="submit" value="Edit Person">
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        </th:block>
+    </div>
+    <div>
+        <a href="/">Back to Start Page</a>
+    </div>
+</body>
+</html>

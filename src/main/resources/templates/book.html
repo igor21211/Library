@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books Market</title>
+</head>
+<body>
+<div>
+    <form method="get" action="/add-book">
+        <input type="submit" value="Add Book">
+    </form>
+</div>
+<div>
+    <th:block th:each="book: ${books} ">
+        <div>
+            <ul>
+                <li>
+                    Name of book: <th:block th:text="${book.getNameBook()}"/> <br/>
+                    Author : <th:block th:text="${book.getAuthor()}"/><br/>
+                    <form th:method="GET" th:action="@{/book/{id}(id=${book.getId()})}" >
+                        <input type="submit" value="Select">
+                    </form>
+                    <div>
+                        <form method="get" th:action="@{/edit-book/{id}(id=${book.getId()})}">
+                            <input type="submit" value="Edit Book">
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </th:block>
+</div>
+<div>
+    <a href="/">Back to Start Page</a>
+</div>
+</body>
+</html>

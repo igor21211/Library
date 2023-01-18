@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Person</title>
+</head>
+<body>
+    <h3>Add Person</h3>
+    <form action="/add-person" method="post" th:object="${person}">
+        <p>Name Person:</p>
+        <input type="text" th:field="*{name}" name="name">
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" >Name Error </div><br/>
+        <p>Surname Person:</p>
+        <input type="text" th:field="*{surName}" name="surName">
+        <div style="color: red" th:if="${#fields.hasErrors('surName')}" th:errors="*{surName}" >surName Error </div><br/>
+        <p>SecondName Person:</p>
+        <input type="text" th:field="*{secondName}" name="secondName">
+        <div style="color: red" th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}" >secondName Error </div><br/>
+        <p>Age Person:</p>
+        <input type="number" th:field="*{age}" name="age">
+        <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}" >Age Error </div><br/>
+
+        <input type="submit" value="Save" class="save">
+    </form>
+</body>
+</html>

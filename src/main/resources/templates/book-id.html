@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+</head>
+<body>
+<h2>Book</h2>
+<div>
+    <ul>
+        <li>
+            Name of Book: <th:block th:text="${book.getNameBook()}"/> <br/>
+            Author: <th:block th:text="${book.getAuthor()}"/><br/>
+        </li>
+    </ul>
+</div>
+<br/>
+<hr>
+    <div th:if="${persons.isEmpty()}">
+        <form th:action="@{/book/{id}(id=${book.getId()})}" th:method="PATCH">
+            <label for="person">Choose Person</label>
+            <select th:object="${person}" th:field="*{id}" id="person">
+                <option th:each="person : ${personsAll}" th:value="${person.getId()}" th:text="${person.getSurName()}"> </option>
+            </select>
+            <input type="submit" value="Select">
+        </form>   
+    </div>
+    <div th:if="${!persons.isEmpty()}">
+        <h2>Person</h2>
+        <th:block th:each="person: ${persons} ">
+        <ul>
+            <li>
+                Surname: <th:block th:text="${person.getSurName()}"/> <br/>
+                Name: <th:block th:text="${person.getName()}"/><br/>
+                Second Name: <th:block th:text="${person.getSecondName()}"/><br/>
+                Age: <th:block th:text="${person.getAge()}"/><br/>
+                <form th:method="DELETE" th:action="@{/book/untie/{id}(id=${book.getId()})}"
+                      onclick="if(!(confirm('Are you sure you want to untie this book from this Person?'))) return false">
+                    <input type="submit" value="Untie">
+                </form>
+            </li>
+        </ul>
+    </div>
+<div>
+    <a href="/">Back to Start Page</a>
+</div>
+</th:block>
+</body>
+</html>
